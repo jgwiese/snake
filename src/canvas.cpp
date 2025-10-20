@@ -1,4 +1,23 @@
 ﻿#include "canvas.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image/stb_image_write.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void key_callback(GLFWwindow *p_window, int key, int scancode, int action,
+                  int mods) {
+  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    glfwSetWindowShouldClose(p_window, GLFW_TRUE);
+  if (key == GLFW_KEY_P && action == GLFW_PRESS) {
+    // char *cwd = get_current_working_directory();
+    int width, height;
+    glfwGetWindowSize(p_window, &width, &height);
+    unsigned char *data = new unsigned char[4 * width * height];
+    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    stbi_write_png("screenshot.png", width, height, 4, data, width * 4);
+    delete[] data;
+  }
+}
 
 Canvas::Canvas(Game *game, int width, int height) {
   this->game = game;
@@ -39,6 +58,7 @@ void Canvas::init() {
   }
 
   glfwMakeContextCurrent(window);
+  glfwSetKeyCallback(window, key_callback);
 
   if (!gladLoadGLES2Loader((GLADloadproc)glfwGetProcAddress)) {
     printf("Failed to initialize OpenGL context.\n");
@@ -56,7 +76,7 @@ void Canvas::init() {
   GLuint VertexArrayID;
   glGenVertexArrays(1, &VertexArrayID);
   glBindVertexArray(VertexArrayID);
-  programID = LoadShaders("/shaders/shader.vert", "/shaders/shader.frag");
+  programID = LoadShaders("shaders/shader.vert", "shaders/shader.frag");
   MatrixID = glGetUniformLocation(programID, "MVP");
 
   float size = (float)width;

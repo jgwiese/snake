@@ -55,7 +55,6 @@ void run() {
   }
 }
 int main(int argc, char *argv[]) {
-  printf("hello main\n");
   Game game(SIZE, SIZE, SPEED);
   canvas = new Canvas(&game, SIZE, SIZE);
   canvas->init();
