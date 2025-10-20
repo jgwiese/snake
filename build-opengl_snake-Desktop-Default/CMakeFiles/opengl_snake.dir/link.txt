@@ -1,1 +1,0 @@
-/usr/bin/g++      CMakeFiles/opengl_snake.dir/canvas.cpp.o CMakeFiles/opengl_snake.dir/game.cpp.o CMakeFiles/opengl_snake.dir/main.cpp.o CMakeFiles/opengl_snake.dir/shader.cpp.o  -o opengl_snake -rdynamic -lglfw -lGL -lGLEW 

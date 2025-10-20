@@ -1,3 +1,0 @@
-/home/gw/Documents/opengl_snake/build-opengl_snake-Desktop-Default/CMakeFiles/rebuild_cache.dir
-/home/gw/Documents/opengl_snake/build-opengl_snake-Desktop-Default/CMakeFiles/edit_cache.dir
-/home/gw/Documents/opengl_snake/build-opengl_snake-Desktop-Default/CMakeFiles/opengl_snake.dir
