@@ -126,12 +126,16 @@ void Canvas::recalcBuffers() {
 }
 
 void Canvas::calcInput() {
-  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+  if ((glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) ||
+      (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS))
     direction = tuple<int, int>(0, 1);
-  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+  if ((glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) ||
+      (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS))
     direction = tuple<int, int>(0, -1);
-  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+  if ((glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) ||
+      (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS))
     direction = tuple<int, int>(-1, 0);
-  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+  if ((glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) ||
+      (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS))
     direction = tuple<int, int>(1, 0);
 }
