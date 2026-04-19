@@ -10,7 +10,7 @@ INCFLAGS := $(addprefix -I,$(OTHER_INCLUDEDIRS)) $(addprefix -I,$(INCLUDEDIR)) $
 ifeq ($(TARGET), web)
 	CC = emcc
 	OUT = build/bin/web/app.js
-	CFLAGS = -DEMSCRIPTEN -s USE_GLFW=3 -s FULL_ES2=1 -s WASM=1 -O2 -s ASSERTIONS=1 -s DEMANGLE_SUPPORT=0 -s ALLOW_MEMORY_GROWTH=1 -s USE_WEBGL2=1 -s MODULARIZE=1 -s EXPORT_NAME='createAppModuleSnake' -L./$(BUILDDIR)/lib -L/home/gw/data/libraries/lib
+	CFLAGS = -D__EMSCRIPTEN__ -s USE_GLFW=3 -s FULL_ES2=1 -s WASM=1 -O2 -s ASSERTIONS=1 -s DEMANGLE_SUPPORT=0 -s ALLOW_MEMORY_GROWTH=1 -s USE_WEBGL2=1 -s MODULARIZE=1 -s EXPORT_NAME='createAppModuleSnake' -L./$(BUILDDIR)/lib -L/home/gw/data/libraries/lib
 	SOURCES := lib/src/glad.c $(shell find $(SRCDIR) -name "*.cpp")
 else
 	CC = g++
@@ -19,7 +19,7 @@ else
 	OBJECTS := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(SOURCES:.cpp=.o))
 	OTHER_INCLUDEDIRS := $(shell find $(SRCDIR) -type d)
 	CFLAGS := -L./$(BUILDDIR)/lib -L/home/gw/data/libraries/lib
-	LIB := -lm -lglfw $(BUILDDIR)/lib/glad.a -ldl -lgsl -lgslcblas -lglmc
+	LIB := -lm -lglfw3 $(BUILDDIR)/lib/glad.a -ldl -lgsl -lgslcblas -lglmc
 endif
 
 # all: web desktop

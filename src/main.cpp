@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#ifdef EMSCRIPTEN
+#ifdef __EMSCRIPTEN__
 #include <emscripten/emscripten.h>
 #endif
 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
   Game game(SIZE, SIZE, SPEED);
   canvas = new Canvas(&game, SIZE, SIZE);
   canvas->init();
-#ifdef EMSCRIPTEN
+#ifdef __EMSCRIPTEN__
   emscripten_set_main_loop(run, 0, 1);
 #else
   while (glfwGetKey(canvas->window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
